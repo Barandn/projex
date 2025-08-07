@@ -40,24 +40,43 @@ body {
     line-height: 1.6; /* Satır yüksekliğini ayarla */
 }
 
+html, body {
+    /* Kaydırma kilitleme mekanizmasının düzgün çalışması için */
+    height: 100%;
+    overflow: hidden;
+}
+
+#landing-page-content {
+    /* Bu, ana kaydırılabilir kapsayıcı olacak */
+    height: 100vh;
+    overflow-y: auto;
+}
+
 /* Konteyner stilleri */
 .container {
     max-width: 1200px; /* Maksimum genişliği sınırla */
     margin: 0 auto; /* Ortala */
     padding: 2rem; /* İç boşluk ekle */
+    width: 100%;
 }
 
 /* Başlık bölümü */
 header {
     max-width: 1040px; /* Navigasyon konteynerini daralt */
-    margin: 0 auto 4rem auto; /* Ortala ve alt boşluk bırak */
-    position: sticky; /* Sabit pozisyon */
+    margin: 0 auto; /* Ortala */
+    position: fixed; /* Sayfa kayarken sabit kalır */
     top: 1.5rem; /* Üstten biraz aşağı it */
+    left: 0;
+    right: 0;
     z-index: 100; /* Katman sırasını ayarla */
+    padding: 0 1rem; /* Yan boşluklar ekle */
 }
+
 
 /* Navigasyon menüsü */
 nav {
+    max-width: 1040px;
+    margin: 0 auto;
     display: flex; /* Esnek kutu düzeni kullan */
     justify-content: space-between; /* İçeriği iki yana yay */
     align-items: center; /* Dikeyde ortala */
@@ -277,79 +296,299 @@ nav ul li a:hover {
     line-height: 1.5; /* Satır yüksekliği */
 }
 
+/* --- Scroll Snapping Sections --- */
+.scroll-section {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+#section-1, #section-2 {
+    height: 100vh;
+    overflow: hidden;
+}
+
+#section-1 {
+    padding: 0;
+}
+
+#section-2 {
+    justify-content: center;
+    padding: 6rem 0; /* Top/Bottom */
+}
+
+
+#section-3 {
+    height: auto;
+    padding-top: 8rem; /* Header'ın üstüne gelmemesi için boşluk */
+}
+
+.section-content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+}
+
+
 /* Hero Bölümü */
 .hero {
-    text-align: left; /* Sola hizala */
-    margin: 4rem 0 8rem 0; /* Dış boşluklar */
-    min-height: 60vh; /* Minimum yükseklik */
-    display: flex; /* Esnek kutu düzeni */
-    flex-direction: column; /* Dikey sıralama */
-    justify-content: flex-end; /* Aşağıya hizala */
-    align-items: flex-start; /* Sola hizala */
-    position: relative; /* Göreceli pozisyon */
+    width: 100%;
+    height: 100%; /* Fill the full viewport height */
+    position: relative;
+    overflow: hidden;
+    background-color: var(--background-color);
+    color: var(--primary-text);
+    display: flex;
+    align-items: center;
+}
+
+.hero > .container {
+    padding: 2rem 4rem;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.hero-text-content {
+    flex: 0 1 550px;
+    max-width: 550px;
+    z-index: 2; /* Metnin görsellerin üzerinde kalmasını sağla */
+}
+
+.hero-visual-container {
+    flex: 1 1 48%;
+    perspective: 1500px;
+    z-index: 1;
+    display: grid; /* Grid layout to stack images */
+    place-items: center; /* Center the images in the grid area */
+}
+
+.hero-image {
+    grid-area: 1 / 1; /* Stack all images on top of each other */
+    width: 100%;
+    height: auto;
+    transition: opacity 0.5s 0.1s ease-out, transform 0.8s 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0;
+    transform: scale(0.95) rotateY(15deg);
+    pointer-events: none; /* Prevent interaction with hidden images */
+}
+
+/* Show the correct image based on the parent .hero class */
+.hero.slide-0 .hero-image[data-slide-img="0"],
+.hero.slide-1 .hero-image[data-slide-img="1"],
+.hero.slide-2 .hero-image[data-slide-img="2"] {
+    opacity: 1;
+    transform: scale(1) rotateY(0);
+    pointer-events: auto;
+}
+
+
+.hero::before,
+.hero::after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    transform: scale(0.5);
+    pointer-events: none; /* Fare olaylarını engelleme */
+}
+
+/* Slayt 0 - Mavi Tema */
+.hero.slide-0 { --hero-accent: var(--primary-blue); }
+.hero.slide-0::before {
+    background: radial-gradient(circle, rgba(29, 104, 255, 0.35), transparent 55%);
+    width: 700px;
+    height: 700px;
+    top: -200px;
+    right: -200px;
+    opacity: 1;
+    transform: scale(1);
+}
+.hero.slide-0::after {
+    background: radial-gradient(circle, rgba(0, 24, 255, 0.2), transparent 65%);
+    width: 900px;
+    height: 900px;
+    bottom: -280px;
+    right: -280px;
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: 0.1s;
+}
+
+/* Slayt 1 - Mor Tema */
+.hero.slide-1 { --hero-accent: var(--okullar-accent); }
+.hero.slide-1::before {
+    background: radial-gradient(circle, rgba(171, 71, 188, 0.35), transparent 65%);
+    width: 600px;
+    height: 600px;
+    top: 50%;
+    right: 0%;
+    transform: translateY(-50%) scale(1);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Blob şekli */
+    opacity: 1;
+}
+.hero.slide-1::after {
+    background: radial-gradient(circle, rgba(106, 27, 154, 0.25), transparent 55%);
+    width: 800px;
+    height: 800px;
+    top: -150px;
+    right: -350px;
+    transform: scale(1) rotate(45deg);
+    border-radius: 70% 30% 30% 70% / 60% 70% 30% 40%; /* Başka bir blob şekli */
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+/* Slayt 2 - Turkuaz Tema */
+.hero.slide-2 { --hero-accent: var(--suruculer-accent); }
+.hero.slide-2::before {
+    background: linear-gradient(135deg, rgba(77, 182, 172, 0.4), transparent 60%);
+    width: 80%;
+    height: 150%;
+    top: -25%;
+    right: -30%;
+    border-radius: 0;
+    transform: rotate(25deg) scale(1);
+    opacity: 1;
+}
+.hero.slide-2::after {
+    background: linear-gradient(-135deg, rgba(0, 77, 64, 0.25), transparent 60%);
+    width: 70%;
+    height: 150%;
+    bottom: -25%;
+    right: -20%;
+    transform: rotate(25deg) scale(1);
+    opacity: 1;
+    transition-delay: 0.1s;
 }
 
 /* Hero metin kapsayıcısı */
 #heroTextWrapper {
-    max-width: 800px; /* Maksimum genişlik */
-    margin-bottom: 2.5rem; /* Alt boşluk */
-    transition: opacity 0.3s ease-in-out; /* Opaklık geçiş animasyonu */
-    margin-left: 1.5rem; /* Soldan boşluk */
+    max-width: 600px;
+    transition: opacity 0.3s ease-in-out;
+    margin-left: 0;
+    margin-bottom: 0;
+    z-index: 2;
+    position: relative;
 }
 
 /* Hero başlığı */
 .hero h1 {
-    font-size: 3.5rem; /* Büyük yazı boyutu */
-    font-weight: 700; /* Kalın yazı */
-    margin-bottom: 1.5rem; /* Alt boşluk */
+    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--primary-text);
 }
 
 /* Hero paragrafı */
 .hero p {
-    font-size: 1.2rem; /* Yazı boyutu */
-    color: var(--secondary-text); /* İkincil metin rengi */
-    margin-bottom: 0; /* Alt boşluk yok */
-    max-width: 650px; /* Maksimum genişlik */
+    font-size: 1.2rem;
+    color: var(--secondary-text);
+    margin-bottom: 0;
+    max-width: 550px;
 }
 
 /* Ayırıcı */
 .divider {
-    display: flex; /* Esnek kutu düzeni */
-    justify-content: center; /* Ortala */
-    gap: 0.5rem; /* Elemanlar arası boşluk */
-    width: 100%; /* Tam genişlik */
+    display: flex;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+    margin-top: 2.5rem;
+    position: relative;
+    z-index: 2;
 }
 
 /* Ayırıcı çubukları */
 .divider span {
-    width: 80px; /* Genişlik */
-    height: 4px; /* Yükseklik */
-    background-color: var(--border-color); /* Kenarlık rengi */
-    border-radius: 2px; /* Yuvarlak köşeler */
-    position: relative; /* Göreceli pozisyon */
+    width: 80px;
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    position: relative;
 }
 
 /* İlerleme animasyonu */
 @keyframes fillProgress {
-    from { width: 0%; } /* Başlangıçta genişlik sıfır */
-    to { width: 100%; } /* Sonda tam genişlik */
+    from { width: 0%; }
+    to { width: 100%; }
 }
 
 /* Ayırıcı çubukların öncesi */
 .divider span::before {
-    content: ''; /* Boş içerik */
-    position: absolute; /* Mutlak pozisyon */
-    top: 0; /* Üstten sıfır */
-    left: 0; /* Soldan sıfır */
-    height: 100%; /* Tam yükseklik */
-    background-color: var(--primary-text); /* Ana metin rengi */
-    border-radius: 2px; /* Yuvarlak köşeler */
-    width: 0; /* Başlangıçta genişlik sıfır */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: var(--hero-accent, var(--primary-blue));
+    border-radius: 2px;
+    width: 0;
 }
 
 /* Aktif ayırıcı çubuk animasyonu */
 .divider span.active::before {
-    animation: fillProgress 5s linear forwards; /* İlerleme animasyonu */
+    animation: fillProgress 5s linear forwards;
+}
+
+/* Kaydırma Göstergesi */
+.scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    z-index: 20;
+    display: grid;
+    place-items: center;
+}
+
+.scroll-indicator .indicator-svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.scroll-indicator .indicator-bg {
+    fill: rgba(255, 255, 255, 0.1);
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-width: 2;
+}
+
+.scroll-indicator .indicator-progress {
+    fill: none;
+    stroke: var(--primary-blue);
+    stroke-width: 3;
+    stroke-linecap: round;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: stroke-dashoffset 0.05s linear;
+}
+
+.scroll-indicator .indicator-arrow {
+    color: var(--primary-text);
+    animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-5px);
+    }
+    60% {
+        transform: translateY(-3px);
+    }
 }
 
 /* Bölüm başlığı */
@@ -379,8 +618,8 @@ nav ul li a:hover {
     display: flex; /* Esnek kutu düzeni */
     justify-content: center; /* Ortala */
     gap: 2rem; /* Elemanlar arası boşluk */
-    margin-bottom: 8rem; /* Alt boşluk */
     align-items: stretch; /* Elemanları eşit yükseklikte tut */
+    width: 100%;
 }
 
 /* Özellik kartı */
@@ -441,6 +680,8 @@ nav ul li a:hover {
 /* İnteraktif Yolculuk Bölümü */
 .interactive-journey {
     margin-bottom: 4rem; /* Alt boşluk */
+    width: 100%;
+    max-width: 1200px;
 }
 
 /* Yolculuk bölüm başlığı */
@@ -451,7 +692,7 @@ nav ul li a:hover {
 /* Yolculuk görsel kapsayıcısı */
 .journey-visual-wrapper {
     position: relative; /* Göreceli pozisyon */
-    padding: 1rem 3rem; /* İç boşluk */
+    padding: 1rem 0; /* İç boşluk */
     margin-bottom: 2rem; /* Alt boşluk */
 }
 
@@ -573,13 +814,16 @@ nav ul li a:hover {
     justify-content: space-between; /* İki yana yay */
     transform: translateY(-50%); /* Dikeyde ortala */
     pointer-events: none; /* Arkadaki elemanlara tıklama geçsin */
+    z-index: 15; /* Düğümlerin üzerinde kalmasını sağla */
 }
 
 /* Yolculuk oku */
 .journey-arrow {
     pointer-events: all; /* Butonlara tıklanabilirlik */
-    background: var(--card-background); /* Kart arka plan rengi */
-    border: 1px solid var(--border-color); /* Kenarlık */
+    background: rgba(255, 255, 255, 0.7); /* Yarı şeffaf arka plan */
+    backdrop-filter: blur(5px); /* Arka planı bulanıklaştır */
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Hafif kenarlık */
     color: var(--primary-text); /* Ana metin rengi */
     width: 44px; /* Genişlik */
     height: 44px; /* Yükseklik */
@@ -595,16 +839,16 @@ nav ul li a:hover {
 
 /* Yolculuk oku üzerine gelindiğinde */
 .journey-arrow:hover {
-    background-color: var(--primary-text); /* Ana metin rengi */
-    color: #fff; /* Beyaz metin */
-    transform: scale(1.1); /* Büyüt */
+    background-color: white; /* Tam beyaz arka plan */
+    color: var(--primary-text); /* Ana metin rengi */
+    transform: translateY(-50%) scale(1.1); /* Büyüt (Y eksenindeki transform ile birleştir) */
 }
 
 /* Önceki yolculuk butonu */
-#journeyPrevBtn { margin-left: -1rem; /* Soldan içeri çek */ }
+#journeyPrevBtn { margin-left: 1rem; /* Soldan içeri çek */ }
 
 /* Sonraki yolculuk butonu */
-#journeyNextBtn { margin-right: -1rem; /* Sağdan içeri çek */ }
+#journeyNextBtn { margin-right: 1rem; /* Sağdan içeri çek */ }
 
 /* Yolculuk detayları kapsayıcısı */
 .journey-details-container {
@@ -693,6 +937,8 @@ nav ul li a:hover {
 
 /* Haber Bülteni Bölümü */
 .newsletter-section {
+    width: 100%;
+    max-width: 1200px;
     text-align: center; /* Ortala */
     padding: 6rem 2rem; /* İç boşluk */
     background-color: var(--primary-blue); /* Ana mavi renk */
@@ -821,7 +1067,7 @@ nav ul li a:hover {
 
 /* --- Veliler Sayfası Stilleri --- */
 #veliler-page {
-    padding: 2rem 0; /* İç boşluk */
+    padding: 8rem 0 2rem; /* Üst boşluk artırıldı, alt boşluk korundu */
     animation: fadeIn 0.5s ease-in-out; /* Fade-in animasyonu */
 }
 
@@ -1544,6 +1790,11 @@ nav ul li a:hover {
     margin-top: 1.5rem; /* Üst boşluk */
 }
 
+/* İletişim sayfası için başlıkla çakışmayı önlemek adına ek üst boşluk */
+#iletisim-page {
+    padding-top: 8rem;
+}
+
 /* --- İletişim Sayfası --- */
 #iletisim-page .section-header {
     margin-bottom: 3rem; /* Alt boşluk */
@@ -1718,9 +1969,40 @@ nav ul li a:hover {
     }
 
     header {
-        position: static;
-        margin-bottom: 2rem;
+        position: fixed; /* Mobilde de sabit kalabilir */
+        margin-bottom: 0;
     }
+    
+    #landing-page-content {
+        /* Mobil'de kaydırma kilitlemeyi devre dışı bırak, normal akışa dön */
+        scroll-snap-type: none;
+        overflow-y: auto;
+    }
+
+    html, body {
+        height: auto;
+        overflow: auto;
+    }
+
+    .scroll-section {
+        height: auto !important;
+        min-height: 100vh;
+        padding-top: 8rem; /* Header için boşluk bırak */
+    }
+
+    #section-1 {
+        padding-top: 0;
+    }
+    
+    #section-3 {
+        min-height: auto;
+        padding-top: 4rem;
+    }
+    
+    .scroll-indicator {
+        display: none; /* Mobil'de göstergeyi gizle */
+    }
+    
 
     /* Mobil Navigasyon */
     nav {
@@ -1808,18 +2090,54 @@ nav ul li a:hover {
 
     /* Ana İçerik */
     .hero {
-        margin-bottom: 4rem;
+        margin-bottom: 0;
         min-height: auto;
+    }
+    
+    .hero > .container {
+        padding: 4rem 2rem;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .hero-text-content {
+        order: 2; /* Metin görselin altında kalsın */
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hero-visual-container {
+        order: 1; /* Görsel üste gelsin */
+        width: 100%;
+        max-width: 500px;
+        margin-bottom: 2rem;
+    }
+
+    .hero-image {
+        transform: scale(0.95); /* Mobil için daha basit animasyon */
+    }
+
+    .hero.slide-0 .hero-image[data-slide-img="0"],
+    .hero.slide-1 .hero-image[data-slide-img="1"],
+    .hero.slide-2 .hero-image[data-slide-img="2"] {
+        transform: scale(1);
+    }
+    
+    .divider {
+        justify-content: center;
     }
 
     #heroTextWrapper {
         margin-left: 0;
+        align-items: center;
+        text-align: center;
     }
     
     .features {
         flex-direction: column; /* Dikey sıralama */
         align-items: center; /* Ortala */
-        margin-bottom: 4rem; /* Alt boşluk */
+        margin-bottom: 0; /* Alt boşluk */
     }
     
     .feature-card {
@@ -1908,8 +2226,16 @@ nav ul li a:hover {
         font-size: 2rem; /* Daha küçük yazı boyutu */
     }
     
-    .hero {
-        margin: 2rem 0 4rem 0;
+    .hero > .container {
+        padding: 4rem 1.5rem;
+    }
+    
+    .scroll-section {
+         padding-top: 6rem;
+    }
+    
+    #section-1 {
+        padding-top: 0;
     }
 
     #veliler-page, #okullar-page, #servis-yoneticileri-page, #suruculer-page {
@@ -1924,14 +2250,18 @@ nav ul li a:hover {
     }
     
     .journey-nav {
-        width: calc(100% - 2rem);
+        width: auto;
         left: 1rem;
+        right: 1rem;
     }
 
     .journey-visual.is-mobile .journey-nav {
         flex-direction: row; /* Dikey düzende oklar yanda kalabilir */
         transform: translateY(-50%);
         top: 50%;
+        left: 0;
+        right: 0;
+        width: 100%;
     }
     
     .journey-visual.is-mobile #journeyPrevBtn {
@@ -1989,7 +2319,7 @@ nav ul li a:hover {
     }
     
     .about-content p {
-        font-size: 1.1rem; /* Daha küçük yazı boyutu */
+        font-size: 1.1rem; /* Yazı boyutu */
     }
     
     .contact-grid {

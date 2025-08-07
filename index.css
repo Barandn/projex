@@ -125,6 +125,12 @@ nav:hover {
     display: flex;
     align-items: center;
     gap: 2rem;
+    width: 100%;
+}
+
+/* Demo butonunu navigasyonun en sağına hizala */
+.nav-links-container .demo-button {
+    margin-left: auto;
 }
 
 /* Navigasyon listesi */

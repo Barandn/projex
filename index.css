@@ -970,6 +970,23 @@ nav ul li a:hover {
     border-radius: var(--border-radius-lg); /* Büyük yuvarlak köşeler */
     margin-top: 6rem; /* Üst boşluk */
     overflow: hidden; /* Taşmayı gizle */
+    position: relative; /* Arka plan katmanı için */
+}
+
+/* Yarı saydam arka plan görseli */
+.newsletter-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('x1.png') center/cover no-repeat;
+    opacity: 0.3; /* Yarı saydamlık */
+    pointer-events: none; /* Etkileşimi engelleme */
+}
+
+/* İçerik üstte kalsın */
+.newsletter-section > * {
+    position: relative;
+    z-index: 1;
 }
 
 /* Haber bülteni bölüm başlığı */

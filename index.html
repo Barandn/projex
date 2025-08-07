@@ -20,113 +20,121 @@
             <a href="/" class="logo" aria-label="Yoldaym Anasayfa" id="logo-link">
                 <img src="gorsel4.png" alt="Yoldaym Logo">
             </a>
-            <!-- Ana gezinme menüsü -->
-            <ul>
-                <li class="dropdown">
-                    <a href="#">Çözümlerimiz <span class="arrow">▾</span></a>
-                    <!-- Çözümler açılır menüsü -->
-                    <div class="dropdown-menu mega-menu">
-                       <div class="mega-menu-content">
-                           <div class="mega-menu-column">
-                               <!-- Çözüm kategorilerinin listesi -->
-                               <ul>
-                                   <li id="veliler-nav-link">
-                                       <a href="#">
-                                           <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
-                                           <div class="link-text">
-                                               <strong>Veliler</strong>
-                                               <span>➤ Anlık konum ve varış süresi takibiyle çocuğunuz hep gözünüzün önünde!</span>
-                                           </div>
-                                       </a>
-                                   </li>
-                                   <li id="suruculer-nav-link">
-                                       <a href="#">
-                                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 21 12 17 5 21 12 2"></polygon></svg>
-                                           <div class="link-text">
-                                               <strong>Sürücüler ve Hostesler</strong>
-                                               <span>➤ Navigasyonlu rota takibi, öğrenci yoklaması ve dakik servis hizmeti parmaklarınızın ucunda!</span>
-                                           </div>
-                                       </a>
-                                   </li>
-                                   <li id="servis-yoneticileri-nav-link">
-                                       <a href="#">
-                                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="8" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="6" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="10" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
-                                           <div class="link-text">
-                                               <strong>Servis Yöneticileri</strong>
-                                               <span>➤ Güzergah planlamasından personel takibine kadar tüm operasyonel süreci tek panelden yönetin!</span>
-                                           </div>
-                                       </a>
-                                   </li>
-                                    <li id="okullar-nav-link">
-                                       <a href="#">
-                                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-                                           <div class="link-text">
-                                               <strong>Okullar</strong>
-                                               <span>➤ tüm öğrenciler için ulaşım verilerini analiz edin, veli memnuniyetini proaktif şekilde yönetin!</span>
-                                           </div>
-                                       </a>
-                                   </li>
-                               </ul>
-                           </div>
-                           <div class="mega-menu-column mega-menu-visuals">
-                               <div class="visual-card">
-                                   <h4>Platformumuzun Gücü</h4>
-                                   <p>En son teknolojilerle geliştirdiğimiz altyapımızla tanışın ve operasyonel verimliliğinizi artırın.</p>
+            <!-- Navigasyon menüsü sarmalayıcısı -->
+            <div class="nav-links-container" id="nav-links-container">
+                <!-- Ana gezinme menüsü -->
+                <ul>
+                    <li class="dropdown">
+                        <a href="#">Çözümlerimiz <span class="arrow">▾</span></a>
+                        <!-- Çözümler açılır menüsü -->
+                        <div class="dropdown-menu mega-menu">
+                           <div class="mega-menu-content">
+                               <div class="mega-menu-column">
+                                   <!-- Çözüm kategorilerinin listesi -->
+                                   <ul>
+                                       <li id="veliler-nav-link">
+                                           <a href="#">
+                                               <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                                               <div class="link-text">
+                                                   <strong>Veliler</strong>
+                                                   <span>➤ Anlık konum ve varış süresi takibiyle çocuğunuz hep gözünüzün önünde!</span>
+                                               </div>
+                                           </a>
+                                       </li>
+                                       <li id="suruculer-nav-link">
+                                           <a href="#">
+                                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 19 21 12 17 5 21 12 2"></polygon></svg>
+                                               <div class="link-text">
+                                                   <strong>Sürücüler ve Hostesler</strong>
+                                                   <span>➤ Navigasyonlu rota takibi, öğrenci yoklaması ve dakik servis hizmeti parmaklarınızın ucunda!</span>
+                                               </div>
+                                           </a>
+                                       </li>
+                                       <li id="servis-yoneticileri-nav-link">
+                                           <a href="#">
+                                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="8" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="6" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="10" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+                                               <div class="link-text">
+                                                   <strong>Servis Yöneticileri</strong>
+                                                   <span>➤ Güzergah planlamasından personel takibine kadar tüm operasyonel süreci tek panelden yönetin!</span>
+                                               </div>
+                                           </a>
+                                       </li>
+                                        <li id="okullar-nav-link">
+                                           <a href="#">
+                                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                                               <div class="link-text">
+                                                   <strong>Okullar</strong>
+                                                   <span>➤ tüm öğrenciler için ulaşım verilerini analiz edin, veli memnuniyetini proaktif şekilde yönetin!</span>
+                                               </div>
+                                           </a>
+                                       </li>
+                                   </ul>
+                               </div>
+                               <div class="mega-menu-column mega-menu-visuals">
+                                   <div class="visual-card">
+                                       <h4>Platformumuzun Gücü</h4>
+                                       <p>En son teknolojilerle geliştirdiğimiz altyapımızla tanışın ve operasyonel verimliliğinizi artırın.</p>
+                                   </div>
                                </div>
                            </div>
-                       </div>
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#">Hakkımızda <span class="arrow">▾</span></a>
-                    <!-- Hakkımızda açılır menüsü -->
-                    <div class="dropdown-menu mega-menu">
-                        <div class="mega-menu-content">
-                           <div class="mega-menu-column">
-                               <!-- Hakkımızda bölümleri -->
-                               <ul>
-                                   <li id="misyonumuz-nav-link">
-                                       <a href="#">
-                                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
-                                           <div class="link-text">
-                                               <strong>Misyonumuz</strong>
-                                               <span>Aileler için güvenli bir servis deneyimi yaratmak.</span>
-                                           </div>
-                                       </a>
-                                   </li>
-                                   <li id="vizyonumuz-nav-link">
-                                       <a href="#">
-                                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                                           <div class="link-text">
-                                               <strong>Vizyonumuz</strong>
-                                               <span>Okul taşımacılığında teknoloji lideri olmak.</span>
-                                           </div>
-                                       </a>
-                                   </li>
-                                   <li id="biz-kimiz-nav-link">
-                                       <a href="#">
-                                           <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                                           <div class="link-text">
-                                               <strong>Biz Kimiz</strong>
-                                               <span>Tutkulu ve uzman bir ekiple tanışın.</span>
-                                           </div>
-                                       </a>
-                                   </li>
-                               </ul>
-                           </div>
-                           <div class="mega-menu-column mega-menu-visuals">
-                               <div class="visual-card">
-                                   <h4>Bize Katılın</h4>
-                                   <p>Taşımacılık sektörünü birlikte dönüştürelim. Kariyer fırsatlarımızı inceleyin.</p>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">Hakkımızda <span class="arrow">▾</span></a>
+                        <!-- Hakkımızda açılır menüsü -->
+                        <div class="dropdown-menu mega-menu">
+                            <div class="mega-menu-content">
+                               <div class="mega-menu-column">
+                                   <!-- Hakkımızda bölümleri -->
+                                   <ul>
+                                       <li id="misyonumuz-nav-link">
+                                           <a href="#">
+                                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                               <div class="link-text">
+                                                   <strong>Misyonumuz</strong>
+                                                   <span>Aileler için güvenli bir servis deneyimi yaratmak.</span>
+                                               </div>
+                                           </a>
+                                       </li>
+                                       <li id="vizyonumuz-nav-link">
+                                           <a href="#">
+                                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                                               <div class="link-text">
+                                                   <strong>Vizyonumuz</strong>
+                                                   <span>Okul taşımacılığında teknoloji lideri olmak.</span>
+                                               </div>
+                                           </a>
+                                       </li>
+                                       <li id="biz-kimiz-nav-link">
+                                           <a href="#">
+                                               <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                                               <div class="link-text">
+                                                   <strong>Biz Kimiz</strong>
+                                                   <span>Tutkulu ve uzman bir ekiple tanışın.</span>
+                                               </div>
+                                           </a>
+                                       </li>
+                                   </ul>
+                               </div>
+                               <div class="mega-menu-column mega-menu-visuals">
+                                   <div class="visual-card">
+                                       <h4>Bize Katılın</h4>
+                                       <p>Taşımacılık sektörünü birlikte dönüştürelim. Kariyer fırsatlarımızı inceleyin.</p>
+                                   </div>
                                </div>
                            </div>
-                       </div>
-                    </div>
-                </li>
-                <li id="iletisim-nav-link"><a href="#">İletişim</a></li>
-            </ul>
-            <!-- Demo talep düğmesi -->
-            <button class="demo-button request-demo-btn">Demo Talep</button>
+                        </div>
+                    </li>
+                    <li id="iletisim-nav-link"><a href="#">İletişim</a></li>
+                </ul>
+                <!-- Demo talep düğmesi -->
+                <button class="demo-button request-demo-btn">Demo Talep</button>
+            </div>
+            <!-- Mobil menü açma/kapama düğmesi -->
+            <button class="mobile-menu-toggle" aria-label="Menüyü aç/kapat" aria-expanded="false" aria-controls="nav-links-container">
+                <svg class="icon-menu" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
         </nav>
     </header>
     <main>

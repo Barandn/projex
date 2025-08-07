@@ -23,6 +23,8 @@
     --servis-accent: #455A64; /* Servis yöneticileri için vurgu rengi */
     --servis-accent-light: #ECEFF1; /* Servis yöneticileri için açık vurgu rengi */
     --servis-accent-darker: #263238; /* Servis yöneticileri için koyu vurgu rengi */
+    --header-spacing-desktop: 110px; /* Desktop header safe space */
+    --header-spacing-mobile: 8rem; /* Mobile header safe space */
 }
 
 /* Genel stiller */
@@ -309,7 +311,8 @@ nav ul li a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem 0;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #section-1, #section-2 {
@@ -323,13 +326,13 @@ nav ul li a:hover {
 
 #section-2 {
     justify-content: center;
-    padding: 6rem 0; /* Top/Bottom */
+    padding: var(--header-spacing-desktop) 2rem;
 }
 
 
 #section-3 {
     height: auto;
-    padding-top: 8rem; /* Header'ın üstüne gelmemesi için boşluk */
+    padding-top: var(--header-spacing-desktop);
 }
 
 .section-content-wrapper {
@@ -348,16 +351,18 @@ nav ul li a:hover {
     color: var(--primary-text);
     display: flex;
     align-items: center;
+    padding-top: var(--header-spacing-desktop); /* Push content down from fixed header */
 }
 
 .hero > .container {
-    padding: 2rem 4rem;
+    padding: 0 4rem; /* Top padding is on .hero now */
     position: relative;
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 3rem;
+    height: 100%;
 }
 
 .hero-text-content {
@@ -487,7 +492,7 @@ nav ul li a:hover {
 
 /* Hero başlığı */
 .hero h1 {
-    font-size: clamp(2.8rem, 6vw, 4.2rem);
+    font-size: clamp(2.8rem, 5vw, 4rem);
     font-weight: 700;
     line-height: 1.15;
     margin-bottom: 1.5rem;
@@ -496,7 +501,7 @@ nav ul li a:hover {
 
 /* Hero paragrafı */
 .hero p {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: var(--secondary-text);
     margin-bottom: 0;
     max-width: 550px;
@@ -600,19 +605,19 @@ nav ul li a:hover {
 /* Bölüm başlığı */
 .section-header {
     text-align: center; /* Ortala */
-    margin-bottom: 4rem; /* Alt boşluk */
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
 /* Bölüm başlığı metni */
 .section-title {
-    font-size: 2.5rem; /* Büyük yazı boyutu */
+    font-size: clamp(2.2rem, 5vw, 2.8rem);
     font-weight: 600; /* Kalın yazı */
     margin-bottom: 1rem; /* Alt boşluk */
 }
 
 /* Bölüm alt başlığı */
 .section-subtitle {
-    font-size: 1.1rem; /* Yazı boyutu */
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
     color: var(--secondary-text); /* İkincil metin rengi */
     max-width: 600px; /* Maksimum genişlik */
     margin-left: auto; /* Soldan otomatik boşluk */
@@ -623,7 +628,7 @@ nav ul li a:hover {
 .features {
     display: flex; /* Esnek kutu düzeni */
     justify-content: center; /* Ortala */
-    gap: 2rem; /* Elemanlar arası boşluk */
+    gap: clamp(1rem, 3vw, 2rem);
     align-items: stretch; /* Elemanları eşit yükseklikte tut */
     width: 100%;
 }
@@ -633,7 +638,7 @@ nav ul li a:hover {
     background-color: var(--card-background); /* Kart arka plan rengi */
     border: 1px solid var(--border-color); /* Kenarlık */
     border-radius: var(--border-radius-lg); /* Büyük yuvarlak köşeler */
-    padding: 2.5rem; /* İç boşluk */
+    padding: clamp(1.5rem, 4vw, 2.5rem);
     text-align: left; /* Sola hizala */
     flex-basis: calc(33.333% - 1.5rem); /* Esnek temel genişlik */
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; /* Geçiş animasyonları */
@@ -946,7 +951,7 @@ nav ul li a:hover {
     width: 100%;
     max-width: 1200px;
     text-align: center; /* Ortala */
-    padding: 6rem 2rem; /* İç boşluk */
+    padding: clamp(4rem, 10vw, 6rem) 2rem;
     background-color: var(--primary-blue); /* Ana mavi renk */
     border-radius: var(--border-radius-lg); /* Büyük yuvarlak köşeler */
     margin-top: 8rem; /* Üst boşluk */
@@ -1993,11 +1998,11 @@ nav ul li a:hover {
     .scroll-section {
         height: auto !important;
         min-height: 100vh;
-        padding-top: 8rem; /* Header için boşluk bırak */
+        padding: var(--header-spacing-mobile) 1rem 2rem; /* Header için boşluk bırak */
     }
 
     #section-1 {
-        padding-top: 0;
+        min-height: auto;
     }
     
     #section-3 {
@@ -2103,12 +2108,15 @@ nav ul li a:hover {
     .hero {
         margin-bottom: 0;
         min-height: auto;
+        padding-top: 0; /* Padding now on parent section */
+        height: auto;
     }
     
     .hero > .container {
-        padding: 4rem 2rem;
+        padding: 0 1rem;
         flex-direction: column;
         text-align: center;
+        gap: 2rem;
     }
     
     .hero-text-content {
@@ -2238,15 +2246,11 @@ nav ul li a:hover {
     }
     
     .hero > .container {
-        padding: 4rem 1.5rem;
+        padding: 0 1rem;
     }
     
     .scroll-section {
-         padding-top: 6rem;
-    }
-    
-    #section-1 {
-        padding-top: 0;
+         padding-top: var(--header-spacing-mobile);
     }
 
     #veliler-page, #okullar-page, #servis-yoneticileri-page, #suruculer-page {

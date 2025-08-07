@@ -108,14 +108,14 @@ nav:hover {
     padding: 0; /* İç boşluk yok */
     display: flex; /* Esnek kutu düzeni */
     align-items: center; /* Dikeyde ortala */
-    flex: 1; /* Tüm sol alanı kapla */
+    flex: 0 0 auto; /* İçeriğe göre genişlik al */
     z-index: 1010; /* Mobil menünün üzerinde kalması için */
 }
 
 /* Logo görüntüsü boyutu */
 .logo img {
-    width: 100%; /* Konteynerin tamamını kapla */
-    height: auto;
+    width: auto; /* Görsel oranlarını koru */
+    height: 2.5rem; /* Demo butonu ile aynı yükseklik */
 }
 
 .nav-links-container {

@@ -103,6 +103,12 @@ nav:hover {
     align-items: center; /* Dikeyde ortala */
 }
 
+/* Logo görüntüsü boyutu */
+.logo img {
+    height: 48px;
+    width: auto;
+}
+
 /* Navigasyon listesi */
 nav ul {
     list-style: none; /* Liste işaretlerini kaldır */
@@ -2016,6 +2022,11 @@ nav ul li a:hover {
     
     .logo {
         align-self: center;
+    }
+
+    .logo img {
+        height: 40px;
+        width: auto;
     }
     
     .demo-button {

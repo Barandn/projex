@@ -766,14 +766,22 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenuToggle.setAttribute('aria-expanded', isOpened);
             document.body.classList.toggle('no-scroll', isOpened);
         });
+        const closeMenu = () => {
+            nav.classList.remove('mobile-menu-open');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('no-scroll');
+        };
 
-        // Close menu when a link is clicked
+        // Close menu when a link or relevant button is clicked
         navLinksContainer.addEventListener('click', (e) => {
-            // Check if the clicked element is a link or a button inside the container
-            if (e.target.tagName === 'A' || e.target.closest('a') || e.target.classList.contains('demo-button')) {
-                nav.classList.remove('mobile-menu-open');
-                mobileMenuToggle.setAttribute('aria-expanded', 'false');
-                document.body.classList.remove('no-scroll');
+            const link = e.target.closest('a');
+            if (link) {
+                const isDropdownToggle = link.parentElement?.classList.contains('dropdown') && window.innerWidth <= 992;
+                if (!isDropdownToggle) {
+                    closeMenu();
+                }
+            } else if (e.target.classList.contains('demo-button')) {
+                closeMenu();
             }
         });
     }

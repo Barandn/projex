@@ -85,7 +85,7 @@ nav {
     max-width: 1040px;
     margin: 0 auto;
     display: flex; /* Esnek kutu düzeni kullan */
-    justify-content: space-between; /* İçeriği iki yana yay */
+    justify-content: center; /* Navigasyon öğelerini ortala */
     align-items: center; /* Dikeyde ortala */
     background-color: rgba(255, 255, 255, 0.85); /* Yarı şeffaf arka plan */
     backdrop-filter: blur(8px); /* Arka plan bulanıklığı */
@@ -109,6 +109,10 @@ nav:hover {
     display: flex; /* Esnek kutu düzeni */
     align-items: center; /* Dikeyde ortala */
     z-index: 1010; /* mobil menünün üzerinde kalması için */
+    position: absolute; /* Navigasyon içinde sabitle */
+    left: 2rem; /* Sol kenara hizala */
+    top: 50%; /* Dikeyde ortala */
+    transform: translateY(-50%); /* Dikey ortalama için kaydır */
 }
 
 /* Logo görüntüsü boyutu */
@@ -1983,6 +1987,10 @@ nav ul li a:hover {
     padding: 0.5rem;
     z-index: 1010; /* Navigasyon içeriğinin üzerinde kalması için */
     color: var(--primary-text);
+    position: absolute; /* Navigasyon içinde sabitle */
+    right: 2rem; /* Sağ kenara hizala */
+    top: 50%; /* Dikeyde ortala */
+    transform: translateY(-50%); /* Dikey ortalama için kaydır */
 }
 
 .mobile-menu-toggle .icon-close { display: none; }

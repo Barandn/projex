@@ -213,7 +213,10 @@ function setupScrollMechanism() {
     let currentSectionIndex = 0;
     let isAnimating = false;
     let scrollAccumulator = 0;
-    const scrollThreshold = 150; // Transition threshold
+    // Increase the required scroll amount for section changes so the
+    // circular indicator fills up more slowly. Users now need to scroll
+    // further before the next section activates.
+    const scrollThreshold = 300; // Transition threshold (was 150)
     const scrollSensitivity = 20; // How much each wheel event adds
     const updateProgressCircle = () => {
         if (currentSectionIndex >= finalSectionIndex) return;

@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showHeroSlide(currentHeroSlideIndex);
         setInterval(nextHeroSlide, slideDuration);
     }
-    // Mobile Navigation Accordion
+    // Mobile Navigation Accordion (for inside slide-out menu)
     document.querySelectorAll('.dropdown > a').forEach(toggle => {
         toggle.addEventListener('click', (e) => {
             if (window.innerWidth <= 992) {
@@ -483,14 +483,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
    
             if (pageToShow.id === 'landing-page-content') {
-                // On the landing page, lock the body scroll and let the inner container handle it
-                // for the custom scroll-jacking mechanism.
                 document.body.style.height = '100%';
                 document.documentElement.style.height = '100%';
                 document.body.style.overflow = 'hidden';
                 document.documentElement.style.overflow = 'hidden';
             } else {
-                // On any other page, enable normal body scrolling.
                 document.body.style.height = 'auto';
                 document.documentElement.style.height = 'auto';
                 document.body.style.overflow = 'auto';
@@ -521,24 +518,19 @@ document.addEventListener('DOMContentLoaded', () => {
     demoRequestButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            // Show the contact page
             showPage(iletisimPage);
            
-            // Find and reset the form
             const form = document.getElementById('contactForm');
             const formContainer = form?.parentElement;
            
             if (form && formContainer) {
-                // Remove success message if it exists
                 const successMessage = formContainer.querySelector('.form-success-message');
                 if (successMessage) {
                     successMessage.remove();
                 }
-                // Show form and reset it
                 form.style.display = 'flex';
                 form.reset();
                
-                // Re-enable button if it was disabled from a previous failed attempt
                 const submitButton = form.querySelector('button[type="submit"]');
                 if (submitButton) {
                     submitButton.textContent = 'Gönder';
@@ -546,7 +538,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 const errorMsg = form.querySelector('.form-error-msg');
                 if (errorMsg) errorMsg.remove();
-                // Pre-fill subject
                 const subjectInput = form.querySelector('input[name="subject"]');
                 if (subjectInput) {
                     subjectInput.value = 'Demo Talebi';
@@ -728,75 +719,27 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-    // --- Okullar Page Tab Logic ---
-    if (okullarPage) {
-        const tabButtons = okullarPage.querySelectorAll('.feature-tab-button');
-        const tabPanes = okullarPage.querySelectorAll('.feature-tab-pane');
-        if (tabButtons.length > 0 && tabPanes.length > 0) {
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-                    // Update buttons
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    // Update panes
-                    tabPanes.forEach(pane => {
-                        if (pane.getAttribute('data-tab') === tabId) {
-                            pane.classList.add('active');
-                        } else {
-                            pane.classList.remove('active');
-                        }
+    // --- Sub-Page Tab Logic ---
+    const pagesWithTabs = ['#okullar-page', '#servis-yoneticileri-page', '#suruculer-page'];
+    pagesWithTabs.forEach(pageSelector => {
+        const pageElement = document.querySelector(pageSelector);
+        if (pageElement) {
+            const tabButtons = pageElement.querySelectorAll('.feature-tab-button');
+            const tabPanes = pageElement.querySelectorAll('.feature-tab-pane');
+            if (tabButtons.length > 0 && tabPanes.length > 0) {
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const tabId = button.getAttribute('data-tab');
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        tabPanes.forEach(pane => {
+                            pane.classList.toggle('active', pane.getAttribute('data-tab') === tabId);
+                        });
                     });
                 });
-            });
+            }
         }
-    }
-    // --- Servis Yöneticileri Page Tab Logic ---
-    if (servisYoneticileriPage) {
-        const tabButtons = servisYoneticileriPage.querySelectorAll('.feature-tab-button');
-        const tabPanes = servisYoneticileriPage.querySelectorAll('.feature-tab-pane');
-        if (tabButtons.length > 0 && tabPanes.length > 0) {
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-                    // Update buttons
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    // Update panes
-                    tabPanes.forEach(pane => {
-                        if (pane.getAttribute('data-tab') === tabId) {
-                            pane.classList.add('active');
-                        } else {
-                            pane.classList.remove('active');
-                        }
-                    });
-                });
-            });
-        }
-    }
-    // --- Sürücüler Page Tab Logic ---
-    if (suruculerPage) {
-        const tabButtons = suruculerPage.querySelectorAll('.feature-tab-button');
-        const tabPanes = suruculerPage.querySelectorAll('.feature-tab-pane');
-        if (tabButtons.length > 0 && tabPanes.length > 0) {
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-                    // Update buttons
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    // Update panes
-                    tabPanes.forEach(pane => {
-                        if (pane.getAttribute('data-tab') === tabId) {
-                            pane.classList.add('active');
-                        } else {
-                            pane.classList.remove('active');
-                        }
-                    });
-                });
-            });
-        }
-    }
+    });
     // --- FAQ Accordion Logic (works for all pages) ---
     const faqItems = document.querySelectorAll('.faq-item');
     if (faqItems.length > 0) {
@@ -808,6 +751,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     item.classList.toggle('active');
                     questionButton.setAttribute('aria-expanded', String(!wasActive));
                 });
+            }
+        });
+    }
+
+    // --- Mobile Menu Toggle Logic ---
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('nav');
+    const navLinksContainer = document.querySelector('.nav-links-container');
+
+    if (mobileMenuToggle && nav && navLinksContainer) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isOpened = nav.classList.toggle('mobile-menu-open');
+            mobileMenuToggle.setAttribute('aria-expanded', isOpened);
+            document.body.classList.toggle('no-scroll', isOpened);
+        });
+
+        // Close menu when a link is clicked
+        navLinksContainer.addEventListener('click', (e) => {
+            // Check if the clicked element is a link or a button inside the container
+            if (e.target.tagName === 'A' || e.target.closest('a') || e.target.classList.contains('demo-button')) {
+                nav.classList.remove('mobile-menu-open');
+                mobileMenuToggle.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('no-scroll');
             }
         });
     }

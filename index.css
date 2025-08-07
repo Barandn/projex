@@ -70,11 +70,11 @@ html, body {
 /* Başlık bölümü */
 header {
     max-width: 1040px; /* Navigasyon konteynerini daralt */
-    margin: 0 auto; /* Ortala */
     position: fixed; /* Sayfa kayarken sabit kalır */
     top: 1.5rem; /* Üstten biraz aşağı it */
-    left: 0;
-    right: 0;
+    left: 50%; /* Ortala */
+    transform: translateX(-50%); /* Ortalamayı düzelt */
+    width: calc(100% - 2rem); /* Ekranı kaplamasını engelle */
     z-index: 100; /* Katman sırasını ayarla */
     padding: 0 1rem; /* Yan boşluklar ekle */
 }
@@ -2025,6 +2025,9 @@ nav.mobile-menu-open .mobile-menu-toggle .icon-menu { display: none; }
     header {
         max-width: none;
         top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
         padding: 0;
         border-radius: 0;
         background-color: rgba(255, 255, 255, 0.95);

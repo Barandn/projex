@@ -85,7 +85,7 @@ nav {
     max-width: 1040px;
     margin: 0 auto;
     display: flex; /* Esnek kutu düzeni kullan */
-    justify-content: center; /* Navigasyon öğelerini ortala */
+    justify-content: space-between; /* Sol logo ve sağ bağlantılar arasında boşluk bırak */
     align-items: center; /* Dikeyde ortala */
     background-color: rgba(255, 255, 255, 0.85); /* Yarı şeffaf arka plan */
     backdrop-filter: blur(8px); /* Arka plan bulanıklığı */
@@ -108,23 +108,22 @@ nav:hover {
     padding: 0; /* İç boşluk yok */
     display: flex; /* Esnek kutu düzeni */
     align-items: center; /* Dikeyde ortala */
-    z-index: 1010; /* mobil menünün üzerinde kalması için */
-    position: absolute; /* Navigasyon içinde sabitle */
-    left: 2rem; /* Sol kenara hizala */
-    top: 50%; /* Dikeyde ortala */
-    transform: translateY(-50%); /* Dikey ortalama için kaydır */
+    flex: 1; /* Tüm sol alanı kapla */
+    z-index: 1010; /* Mobil menünün üzerinde kalması için */
 }
 
 /* Logo görüntüsü boyutu */
 .logo img {
-    height: 48px;
-    width: auto;
+    width: 100%; /* Konteynerin tamamını kapla */
+    height: auto;
 }
 
 .nav-links-container {
     display: flex;
     align-items: center;
     gap: 2rem;
+    flex: 1; /* Sağ alanı kapla */
+    justify-content: flex-end; /* Bağlantıları sağa hizala */
 }
 
 /* Navigasyon listesi */
@@ -2064,7 +2063,8 @@ nav.mobile-menu-open .mobile-menu-toggle .icon-menu { display: none; }
     }
     
     .logo img {
-        height: 36px;
+        width: 100%;
+        height: auto;
     }
 
     .mobile-menu-toggle {

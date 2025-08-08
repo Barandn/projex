@@ -106,17 +106,24 @@ nav:hover {
 .logo {
     border: none; /* Kenarlık yok */
     padding: 0; /* İç boşluk yok */
-    display: flex; /* Esnek kutu düzeni */
-    align-items: center; /* Dikeyde ortala */
+    position: relative; /* Mutlak konumlu görsel için referans */
+    width: 40px; /* Düzen genişliğini sabitle */
+    height: 40px; /* Düzen yüksekliğini sabitle */
     flex-shrink: 0; /* Logonun küçülmesini engelle */
     z-index: 1010; /* Mobil menünün üzerinde kalması için */
+    overflow: visible; /* Büyütülen logonun taşmasını göster */
 }
 
 /* Logo görüntüsü boyutu */
 .logo img {
-    max-height: 40px; /* Logoyu navigasyon alanında daha belirgin göstermek için yüksekliği artır */
+    height: 40px; /* Logonun düzen yüksekliği */
     width: auto; /* Genişlik otomatik ayarlansın */
     display: block; /* Görüntünün altındaki boşluğu kaldır */
+    position: absolute; /* Düzen dışı konumlandır */
+    top: 50%; /* Dikey merkez */
+    left: 0; /* Sola hizala */
+    transform: translateY(-50%) scale(2); /* Flex kullanmadan logoyu büyüt */
+    transform-origin: left center; /* Sol kenardan büyüt */
 }
 
 .nav-links-container {

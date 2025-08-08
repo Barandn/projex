@@ -100,6 +100,17 @@ const journeyListEl = document.getElementById('journey-details-list');
 const journeyPrevBtn = document.getElementById('journeyPrevBtn');
 const journeyNextBtn = document.getElementById('journeyNextBtn');
 const journeyContentEl = document.querySelector('.journey-details-content');
+const journeyVisual = document.querySelector('.journey-visual');
+
+function getPathOffsets() {
+    if (!journeyPath || !journeyVisual) return { x: 0, y: 0 };
+    const pathRect = journeyPath.getBoundingClientRect();
+    const visualRect = journeyVisual.getBoundingClientRect();
+    return {
+        x: pathRect.left - visualRect.left,
+        y: pathRect.top - visualRect.top,
+    };
+}
 /**
  * Animates the bus along the SVG path to a target percentage.
  */
@@ -111,6 +122,7 @@ function animateBus(targetPercentage) {
     const startPercentage = currentBusPercentage;
     const duration = 1200; // ms
     const pathLength = journeyPath.getTotalLength();
+    const { x: offsetX, y: offsetY } = getPathOffsets();
     let startTime = null;
    
     const easeInOutCubic = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -130,7 +142,7 @@ function animateBus(targetPercentage) {
         const nextPoint = journeyPath.getPointAtLength(pathLength * Math.min(percentage + 0.001, 1));
         const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * (180 / Math.PI);
        
-        journeyBus.style.transform = `translate(${point.x}px, ${point.y}px) translate(-50%, -50%) rotate(${angle}deg)`;
+        journeyBus.style.transform = `translate(${point.x + offsetX}px, ${point.y + offsetY}px) translate(-50%, -50%) rotate(${angle}deg)`;
         if (progress < 1) {
             requestAnimationFrame(frame);
         } else {
@@ -170,7 +182,8 @@ function updateJourneyDisplay(index, shouldAnimate) {
             const nextPoint = journeyPath.getPointAtLength(pathLength * Math.min(currentBusPercentage + 0.001, 1));
             const angle = Math.atan2(nextPoint.y - point.y, nextPoint.x - point.x) * (180 / Math.PI);
             journeyBus.style.transition = 'none'; // Disable transition for instant move
-            journeyBus.style.transform = `translate(${point.x}px, ${point.y}px) translate(-50%, -50%) rotate(${angle}deg)`;
+            const { x: offsetX, y: offsetY } = getPathOffsets();
+            journeyBus.style.transform = `translate(${point.x + offsetX}px, ${point.y + offsetY}px) translate(-50%, -50%) rotate(${angle}deg)`;
             // Re-enable transitions (if any) after paint
             requestAnimationFrame(() => {
                 if (journeyBus) journeyBus.style.transition = '';
@@ -187,8 +200,9 @@ function setupJourneyNodesPositions() {
         const nodeEl = document.getElementById(data.nodeId);
         if (nodeEl) {
             const point = journeyPath.getPointAtLength(pathLength * data.pathPercentage);
-            nodeEl.style.left = `${point.x}px`;
-            nodeEl.style.top = `${point.y}px`;
+            const { x: offsetX, y: offsetY } = getPathOffsets();
+            nodeEl.style.left = `${point.x + offsetX}px`;
+            nodeEl.style.top = `${point.y + offsetY}px`;
         }
     });
 }
@@ -325,7 +339,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     // Interactive Journey Setup
     if (journeyPath && journeyBus) {
-        const journeyVisual = document.querySelector('.journey-visual');
         const handleJourneyLayout = () => {
             if (!journeyPath || !journeyVisual) return;
            

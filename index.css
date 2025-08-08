@@ -71,7 +71,7 @@ html, body {
 header {
     max-width: 1040px; /* Navigasyon konteynerini daralt */
     position: fixed; /* Sayfa kayarken sabit kalır */
-    top: 1.5rem; /* Üstten biraz aşağı it */
+    top: 1rem; /* Üstteki boşluğu azalttık */
     left: 50%; /* Ortala */
     transform: translateX(-50%); /* Ortalamayı düzelt */
     width: calc(100% - 2rem); /* Ekranı kaplamasını engelle */
@@ -90,7 +90,7 @@ nav {
     background-color: rgba(255, 255, 255, 0.85); /* Yarı şeffaf arka plan */
     backdrop-filter: blur(8px); /* Arka plan bulanıklığı */
     -webkit-backdrop-filter: blur(8px); /* Webkit tarayıcılar için bulanıklık */
-    padding: 0.75rem 2rem; /* Daha küçük iç boşluk */
+    padding: 0.5rem 2rem; /* Dikey boşluğu azaltıp logoya yer açtık */
     border-radius: 999px; /* Daha yuvarlak köşeler */
     border: 1px solid var(--border-color); /* Kenarlık ekle */
     transition: background-color 0.3s ease; /* Arka plan rengi geçiş animasyonu */
@@ -114,7 +114,7 @@ nav:hover {
 
 /* Logo görüntüsü boyutu */
 .logo img {
-    height: 40px; /* Logo yüksekliğini sabitle */
+    height: 48px; /* Logoyu navigasyon çubuğuna daha iyi sığacak şekilde büyüttük */
     width: auto; /* Genişlik otomatik ayarlansın */
     display: block; /* Görüntünün altındaki boşluğu kaldır */
 }

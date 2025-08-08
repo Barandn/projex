@@ -114,7 +114,7 @@ nav:hover {
 
 /* Logo görüntüsü boyutu */
 .logo img {
-    height: 48px; /* Logoyu navigasyon çubuğuna daha iyi sığacak şekilde büyüttük */
+    max-height: 64px; /* Logoyu mevcut navigasyon alanına daha açık şekilde sığdır */
     width: auto; /* Genişlik otomatik ayarlansın */
     display: block; /* Görüntünün altındaki boşluğu kaldır */
 }

@@ -558,11 +558,11 @@ nav ul li a:hover {
 }
 
 .hero-progress-arrow.hero-prev {
-    left: -1.5rem;
+    left: -1rem;
 }
 
 .hero-progress-arrow.hero-next {
-    right: -1.5rem;
+    right: -1rem;
 }
 
 /* Ayırıcı çubukları */

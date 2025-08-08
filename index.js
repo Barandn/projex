@@ -172,10 +172,13 @@ function animateBus(targetPercentage) {
 function updateJourneyDisplay(index, shouldAnimate) {
     if (!journeyTitleEl || !journeyDescEl || !journeyListEl || !journeyPath || !journeyBus || !journeyContentEl) return;
     const data = journeyData[index];
-   
+    const journeyVisual = document.querySelector('.journey-visual');
+    const isMobile = journeyVisual && journeyVisual.classList.contains('is-mobile');
+
     // Update active node
     journeyNodes.forEach(n => n.classList.remove('active'));
     document.getElementById(data.nodeId)?.classList.add('active');
+
     // Fade out current content
     journeyContentEl.style.opacity = '0';
     // Update text content and fade in after a short delay
@@ -185,6 +188,12 @@ function updateJourneyDisplay(index, shouldAnimate) {
         journeyListEl.innerHTML = data.features.map(f => `<li>${f}</li>`).join('');
         journeyContentEl.style.opacity = '1';
     }, 300); // Adjust timing to feel smooth with CSS transition
+
+    // On mobile, we only update content and nodes, no bus animation.
+    if (isMobile) {
+        return;
+    }
+
     if (shouldAnimate) {
         animateBus(data.pathPercentage);
     } else {
@@ -207,10 +216,21 @@ function updateJourneyDisplay(index, shouldAnimate) {
 }
 function setupJourneyNodesPositions() {
     if (!journeyPath || window.getComputedStyle(journeyPath).display === 'none') return;
+
+    const journeyVisual = document.querySelector('.journey-visual');
+    if (journeyVisual && journeyVisual.classList.contains('is-mobile')) {
+        // On mobile, nodes are positioned via flexbox in CSS. Clear inline styles.
+        journeyNodes.forEach(node => {
+            node.style.left = '';
+            node.style.top = '';
+        });
+        return;
+    }
+    
     const pathLength = journeyPath.getTotalLength();
     if (pathLength === 0) return;
     
-    const offset = getJourneyMobileOffset();
+    const offset = getJourneyMobileOffset(); // Will be {x:0, y:0} on desktop
    
     journeyData.forEach(data => {
         const nodeEl = document.getElementById(data.nodeId);

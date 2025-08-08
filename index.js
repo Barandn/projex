@@ -24,6 +24,9 @@ const heroTextWrapperEl = document.getElementById('heroTextWrapper');
 const heroTitleEl = document.getElementById('heroTitle');
 const heroDescriptionEl = document.getElementById('heroDescription');
 const heroProgressSpans = document.querySelectorAll('#heroProgress span');
+const heroPrevBtn = document.getElementById('heroPrev');
+const heroNextBtn = document.getElementById('heroNext');
+let heroSlideInterval;
 function showHeroSlide(index) {
     if (!heroTextWrapperEl || !heroTitleEl || !heroDescriptionEl || !heroProgressSpans.length || !heroEl) return;
     // Remove previous slide classes and add the current one for background changes
@@ -44,6 +47,29 @@ function showHeroSlide(index) {
 function nextHeroSlide() {
     currentHeroSlideIndex = (currentHeroSlideIndex + 1) % heroSlides.length;
     showHeroSlide(currentHeroSlideIndex);
+}
+function prevHeroSlide() {
+    currentHeroSlideIndex = (currentHeroSlideIndex - 1 + heroSlides.length) % heroSlides.length;
+    showHeroSlide(currentHeroSlideIndex);
+}
+function startHeroSlideInterval() {
+    heroSlideInterval = setInterval(nextHeroSlide, slideDuration);
+}
+function resetHeroSlideInterval() {
+    clearInterval(heroSlideInterval);
+    startHeroSlideInterval();
+}
+if (heroPrevBtn) {
+    heroPrevBtn.addEventListener('click', () => {
+        prevHeroSlide();
+        resetHeroSlideInterval();
+    });
+}
+if (heroNextBtn) {
+    heroNextBtn.addEventListener('click', () => {
+        nextHeroSlide();
+        resetHeroSlideInterval();
+    });
 }
 // --- Interactive Journey Logic ---
 const journeyData = [
@@ -358,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hero slider setup
     if (heroTextWrapperEl && heroProgressSpans.length > 0) {
         showHeroSlide(currentHeroSlideIndex);
-        setInterval(nextHeroSlide, slideDuration);
+        startHeroSlideInterval();
     }
     // Mobile Navigation Accordion (for inside slide-out menu)
     document.querySelectorAll('.dropdown > a').forEach(toggle => {

@@ -71,7 +71,7 @@ html, body {
 header {
     max-width: 1040px; /* Navigasyon konteynerini daralt */
     position: fixed; /* Sayfa kayarken sabit kalır */
-    top: 1rem; /* Üstteki boşluğu azalttık */
+    top: 0; /* Sayfanın en üstüne hizala */
     left: 50%; /* Ortala */
     transform: translateX(-50%); /* Ortalamayı düzelt */
     width: calc(100% - 2rem); /* Ekranı kaplamasını engelle */
@@ -339,7 +339,7 @@ nav ul li a:hover {
 }
 
 #section-1 {
-    padding-top: var(--header-spacing-desktop);
+    padding-top: 0; /* İlk yüklemede slaytların üstündeki boşluğu kaldır */
 }
 
 #section-2 {

@@ -542,6 +542,29 @@ nav ul li a:hover {
     z-index: 2;
 }
 
+/* Hero progress navigation arrows */
+.hero-progress-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-progress-arrow.hero-prev {
+    left: -1.5rem;
+}
+
+.hero-progress-arrow.hero-next {
+    right: -1.5rem;
+}
+
 /* Ayırıcı çubukları */
 .divider span {
     width: 80px;

@@ -108,14 +108,15 @@ nav:hover {
     padding: 0; /* İç boşluk yok */
     display: flex; /* Esnek kutu düzeni */
     align-items: center; /* Dikeyde ortala */
-    flex: 1; /* Tüm sol alanı kapla */
+    flex-shrink: 0; /* Logonun küçülmesini engelle */
     z-index: 1010; /* Mobil menünün üzerinde kalması için */
 }
 
 /* Logo görüntüsü boyutu */
 .logo img {
-    width: 100%; /* Konteynerin tamamını kapla */
-    height: auto;
+    height: 40px; /* Logo yüksekliğini sabitle */
+    width: auto; /* Genişlik otomatik ayarlansın */
+    display: block; /* Görüntünün altındaki boşluğu kaldır */
 }
 
 .nav-links-container {
@@ -2082,11 +2083,6 @@ nav.mobile-menu-open .mobile-menu-toggle .icon-menu { display: none; }
         background-color: transparent;
     }
     
-    .logo img {
-        width: 100%;
-        height: auto;
-    }
-
     .mobile-menu-toggle {
         display: flex;
         align-items: center;

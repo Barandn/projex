@@ -124,7 +124,7 @@ nav:hover {
     align-items: center;
     gap: 2rem;
     flex: 1; /* Sağ alanı kapla */
-    justify-content: flex-end; /* Bağlantıları sağa hizala */
+    justify-content: space-between; /* Bağlantılar ve buton arasını ayır */
 }
 
 /* Navigasyon listesi */
@@ -132,6 +132,8 @@ nav ul {
     list-style: none; /* Liste işaretlerini kaldır */
     display: flex; /* Esnek kutu düzeni */
     gap: 2rem; /* Elemanlar arası boşluk */
+    flex: 1; /* Esnek alanı kaplayarak ortalamaya yardımcı ol */
+    justify-content: center; /* Bağlantıları ortala */
 }
 
 /* Navigasyon bağlantıları */
@@ -2117,6 +2119,7 @@ nav.mobile-menu-open .mobile-menu-toggle .icon-menu { display: none; }
         width: 100%;
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 1rem;
+        justify-content: flex-start; /* Mobil için hizalamayı düzelt */
     }
     
     nav ul li {

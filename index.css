@@ -23,7 +23,7 @@
     --servis-accent: #455A64; /* Servis yöneticileri için vurgu rengi */
     --servis-accent-light: #ECEFF1; /* Servis yöneticileri için açık vurgu rengi */
     --servis-accent-darker: #263238; /* Servis yöneticileri için koyu vurgu rengi */
-    --header-spacing-desktop: 110px; /* Desktop header safe space */
+    --header-spacing-desktop: 120px; /* Desktop header safe space */
     --header-height-mobile: 70px; /* Mobile header height */
 }
 
@@ -71,7 +71,7 @@ html, body {
 header {
     max-width: 1040px; /* Navigasyon konteynerini daralt */
     position: fixed; /* Sayfa kayarken sabit kalır */
-    top: 0; /* Sayfanın en üstüne hizala */
+    top: 10px; /* Sayfanın üstünden hafif boşluk bırak */
     left: 50%; /* Ortala */
     transform: translateX(-50%); /* Ortalamayı düzelt */
     width: calc(100% - 2rem); /* Ekranı kaplamasını engelle */
